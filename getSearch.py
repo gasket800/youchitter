@@ -16,7 +16,7 @@ res = twitter.get(url, params=params)
 
 if res.status_code == 200:
     timelines = json.loads(res.text)
-    print timelines['']
+    print timelines
 else:
     print("Failed: %d" % res.status_code)
 
