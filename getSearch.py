@@ -28,8 +28,8 @@ if res.status_code == 200:
         for tweet in tweets['statuses']:
             created_at = tweet['created_at']
             text = tweet['text']
-            sql = "insert into boo_data (text, created_at) values ('%s', '%s')" % (text, created_at)
-            conn.execute(sql)
+            sql = 'insert into boo_data (text, created_at) values (?, ?)'
+            conn.execute(sql, (text, created_at))
 
             print created_at
             print text
@@ -45,9 +45,3 @@ if res.status_code == 200:
 
 else:
     print("Failed: %d" % res.status_code)
-
-
-
-
-
-
