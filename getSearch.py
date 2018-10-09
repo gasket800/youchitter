@@ -19,10 +19,6 @@ params = {'count': 100, 'q': word}
 
 res = twitter.get(url, params=params)
 
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
 if res.status_code == 200:
     tweets = json.loads(res.text)
 
@@ -49,7 +45,3 @@ if res.status_code == 200:
 
 else:
     print("Failed: %d" % res.status_code)
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
