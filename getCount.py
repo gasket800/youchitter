@@ -13,8 +13,11 @@ count = 0
 # set_start_time = raw_input('input start time as yyyy-mm-dd hh:mm >> ')
 set_start_time = sys.argv[1]
 
+# adjast_jst_time = datetime.timedelta(9)
+
 try:
     start_time = datetime.datetime.strptime(set_start_time, '%Y-%m-%d %H:%M')
+    # start_time = start_time + adjast_jst_time
 
 except Exception as e:
     print e
@@ -26,7 +29,7 @@ end_time = start_time + delta_time
 print start_time
 
 for i in data:
-    tweet_time = datetime.datetime.strptime(i[0], '%Y-%m-%d %H:%M:%S')
+    tweet_time = datetime.datetime.strptime(i[0], '%Y-%m-%d %H:%M:%S')  # + adjast_jst_time
 
     if tweet_time < end_time:
         count += 1
@@ -38,7 +41,13 @@ for i in data:
             count = 0
         count = 1
 
-for k, v in counts:
-    print k, v
+with open('./booTweetcount.data', 'w')as f:
+    f.write('datetime,count \n')
+    for k, v in counts:
+        # print k, v
+        row_data = datetime.datetime.strftime(k, '%Y-%m-%d %H:%M:%S') + ',' + str(v) + '\n'
+        print row_data
+        f.write(row_data)
+
 
 conn.close()
