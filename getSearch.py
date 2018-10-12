@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import config
+import datetime
 import json
 from requests_oauthlib import OAuth1Session
 import sqlite3
@@ -26,7 +27,8 @@ if res.status_code == 200:
         conn = sqlite3.connect('boo_data.sqlite3')
 
         for tweet in tweets['statuses']:
-            created_at = tweet['created_at']
+            # created_at = tweet['created_at']
+            created_at = datetime.datetime.strptime(tweet['created_at'], '%a %b %d %H:%M:%S +0000 %Y')
             text = tweet['text']
             sql = 'insert into boo_data (text, created_at) values (?, ?)'
             conn.execute(sql, (text, created_at))
