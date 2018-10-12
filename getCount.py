@@ -13,7 +13,7 @@ count = 0
 # set_start_time = raw_input('input start time as yyyy-mm-dd hh:mm >> ')
 set_start_time = sys.argv[1]
 
-# adjast_jst_time = datetime.timedelta(9)
+adjast_jst_time = datetime.timedelta(hours=9)
 
 try:
     start_time = datetime.datetime.strptime(set_start_time, '%Y-%m-%d %H:%M')
@@ -29,7 +29,7 @@ end_time = start_time + delta_time
 print start_time
 
 for i in data:
-    tweet_time = datetime.datetime.strptime(i[0], '%Y-%m-%d %H:%M:%S')  # + adjast_jst_time
+    tweet_time = datetime.datetime.strptime(i[0], '%Y-%m-%d %H:%M:%S') + adjast_jst_time
 
     if tweet_time < end_time:
         count += 1
