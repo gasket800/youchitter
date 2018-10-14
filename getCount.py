@@ -46,9 +46,7 @@ for i in data:
 with open('./booTweetcount.data', 'w')as f:
     f.write('datetime,count \n')
     for k, v in counts:
-        # print k, v
         row_data = datetime.datetime.strftime(k, '%Y-%m-%d %H:%M:%S') + ',' + str(v) + '\n'
-        print row_data
         f.write(row_data)
 
 
