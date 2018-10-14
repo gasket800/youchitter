@@ -1,4 +1,6 @@
 import pandas as pd
+import matplotlib as mpl
+mpl.use('Agg')
 import matplotlib.pyplot as plt
 
 
@@ -11,4 +13,3 @@ print data
 
 data.plot()
 plt.savefig('booTweetcount.png')
-
