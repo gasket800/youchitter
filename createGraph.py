@@ -1,3 +1,5 @@
+# coding: utf-8
+
 import pandas as pd
 import matplotlib as mpl
 mpl.use('Agg')
