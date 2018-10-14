@@ -33,10 +33,6 @@ if res.status_code == 200:
             sql = 'insert into boo_data (text, created_at) values (?, ?)'
             conn.execute(sql, (text, created_at))
 
-            # print created_at
-            # print text
-            print '-' * 100
-
         conn.commit()
 
     except Error as e:
