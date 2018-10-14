@@ -28,8 +28,6 @@ except Exception as e:
 delta_time = datetime.timedelta(0, 60)
 end_time = start_time + delta_time
 
-print start_time
-
 for i in data:
     tweet_time = datetime.datetime.strptime(i[0], '%Y-%m-%d %H:%M:%S') + adjast_jst_time
 
