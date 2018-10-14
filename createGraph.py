@@ -2,8 +2,8 @@
 
 import pandas as pd
 import matplotlib as mpl
-import matplotlib.pyplot as plt
 mpl.use('Agg')
+import matplotlib.pyplot as plt
 
 
 data = pd.read_csv('./booTweetcount.data', dtype={0: str, 1: int}, parse_dates=[0])
