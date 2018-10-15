@@ -1,19 +1,28 @@
 # coding: utf-8
 
+import config
 import sys
-import sqlite3
+# import sqlite3
+import psycopg2
 import datetime
 
 
-conn = sqlite3.connect('boo_data.sqlite3')
+ENDPOINT = config.ENDPOINT
+PORT = config.PORT
+DBNAME = config.DBNAME
+USER = config.USER
+PASSWD = config.PASSWD
+
+access = 'dbname=%s host=%s port=%s user=%s password=%s' % (DBNAME, ENDPOINT, PORT, USER, PASSWD)
+conn = psycopg2.connect(access)
 sql = 'select created_at from boo_data order by created_at asc;'
-data = conn.execute(sql)
+cur = conn.cursor()
+data = cur.execute(sql)
 
 counts = []
 count = 0
 
 set_start_time = sys.argv[1]
-
 adjast_jst_time = datetime.timedelta(hours=9)
 
 try:
@@ -39,7 +48,7 @@ for i in data:
             count = 0
         count = 1
 
-with open('./booTweetcount.data', 'w')as f:
+with open('./booTweetcount_rs.data', 'w')as f:
     f.write('datetime,count \n')
     for k, v in counts:
         row_data = datetime.datetime.strftime(k, '%Y-%m-%d %H:%M:%S') + ',' + str(v) + '\n'

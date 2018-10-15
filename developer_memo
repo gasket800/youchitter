@@ -1,0 +1,27 @@
+aws redshiftに乗せて分析したい
+今はsqlite3
+redshiftに載せ替える
+ローカルでテストできるdocker imageがあるはず -> docker
+
+docker
+ - image テンプレートみたいなもの
+ - container テンプレートに実行データを付与した実態みたいなもの
+
+redshift image これ
+ - https://hub.docker.com/r/guildeducation/docker-amazon-redshift/
+ - テストむけのcontainer 走らす
+   コメントアウトたちはうまくenv情報を渡して作れなかったもの。。。一旦諦める。
+   # docker run -d -p 5439:5439 -e POSTGRES_USER=gasket800 POSTGRES_PASSWORD=****** --name youchitter-redshift guildeducation/docker-amazon-redshift
+   # docker run -d -p 5439:5439 -e POSTGRES_USER=gasket800 -e POSTGRES_PASSWORD=J0yoy9n55 --name youchitter-redshift guildeducation/docker-amazon-redshift
+   # docker run -d -p 5439:5439 -e POSTGRES_USER=gasket800 --name youchitter-redshift guildeducation/docker-amazon-redshift
+   # docker run -p 5439:5439 -e POSTGRES_USER=gasket800 --name youchitter-redshift -d guildeducation/docker-amazon-redshift
+   # docker run -p 5439:5439 -e POSTGRES_USER=gasket800 -e POSTGRES_PASSWORD=J0yoy9n55 -e POSTGRES_DB=boo_data --name youchitter-redshift -d guildeducation/docker-amazon-redshift
+   # docker run -p 5439:5439 -e POSTGRES_USER=gasket800 -e POSTGRES_DB=boo_data --name youchitter-redshift -d guildeducation/docker-amazon-redshift
+   docker run -p 5439:5439 --name youchitter-redshift -d guildeducation/docker-amazon-redshift
+
+   ローカル接続
+   psql -U postgres -h 127.0.0.1 -p 5439
+
+   差分
+   ローカル： create table boo_data (id serial, text varchar(250), created_at timestamp);
+   redshift: create table boo_data (id integer identity, text varchar(250), created_at timestamp);
