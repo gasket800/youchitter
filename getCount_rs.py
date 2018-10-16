@@ -14,8 +14,9 @@ USER = config.USER
 PASSWD = config.PASSWD
 
 access = 'dbname=%s host=%s port=%s user=%s password=%s' % (DBNAME, ENDPOINT, PORT, USER, PASSWD)
-conn = psycopg2.connect(access)
 sql = 'select created_at from boo_data order by created_at asc;'
+
+conn = psycopg2.connect(access)
 cur = conn.cursor()
 data = cur.execute(sql)
 
