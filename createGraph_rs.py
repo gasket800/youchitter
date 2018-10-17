@@ -13,3 +13,4 @@ data.index = pd.to_datetime(data.index, format='%Y-%m-%d %H:%M:%S')
 
 data.plot()
 plt.savefig('booTweetcount_rs.png')
+

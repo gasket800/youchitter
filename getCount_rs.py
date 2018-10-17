@@ -57,3 +57,4 @@ with open('./booTweetcount_rs.data', 'w')as f:
 
 
 conn.close()
+
