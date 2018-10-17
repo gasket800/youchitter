@@ -18,7 +18,7 @@ sql = 'select created_at from boo_data order by created_at asc;'
 
 conn = psycopg2.connect(access)
 cur = conn.cursor()
-data = cur.execute(sql)
+cur.execute(sql)
 
 counts = []
 count = 0
@@ -36,8 +36,8 @@ except Exception as e:
 delta_time = datetime.timedelta(0, 60)
 end_time = start_time + delta_time
 
-for i in data:
-    tweet_time = datetime.datetime.strptime(i[0], '%Y-%m-%d %H:%M:%S') + adjast_jst_time
+for i in cur:
+    tweet_time = i[0] + adjast_jst_time
 
     if tweet_time < end_time:
         count += 1
